@@ -5,6 +5,7 @@ import Register from "./pages/Auth/RegisterPage.jsx"
 import RestaurantHomepage from "./pages/HomePage.jsx"
 import UserSideBar from "./components/UserSideBar.jsx"
 import AdminSideBar from "./components/AdminSideBar.jsx"
+import ContactUs from "./pages/ContactUs";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/register" element={<Register/>} />
       <Route path="/admindashboard" element={<AdminSideBar/>} />
       <Route path="/useraccount" element={<UserSideBar/>} />
+      <Route path="/contact" element={<ContactUs />} />
      </Routes>
     </>
   )
