@@ -29,8 +29,14 @@ const RestaurantHome = () => {
             <a href="#menu" className="hover:text-amber-400 transition">Menu</a>
             <a href="#" className="hover:text-amber-400 transition">Reservation</a>
             <a href="#" className="hover:text-amber-400 transition">About Us</a>
+<<<<<<< Updated upstream
             <a href="#" className="hover:text-amber-400 transition">Gallery</a>
             <a href="#" className="hover:text-amber-400 transition">Contact</a>
+=======
+            <Link to="/gallery" className="hover:text-amber-400 transition">Gallery</Link>
+            {/* <a href="#" className="hover:text-amber-400 transition">Contact</a> */}
+            <Link to="/contact" className="hover:text-amber-400 transition">Contact</Link>
+>>>>>>> Stashed changes
           </div>
 
           <button 
@@ -105,13 +111,13 @@ const RestaurantHome = () => {
                     About Us
                 </a>
 
-                <a
-                    href="#gallery"
+                <Link
+                    to="/gallery"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     Gallery
-                </a>
+                </Link>
 
                 <a
                     href="#contact"
