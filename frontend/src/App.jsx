@@ -5,11 +5,9 @@ import Register from "./pages/Auth/RegisterPage.jsx"
 import RestaurantHomepage from "./pages/HomePage.jsx"
 import UserSideBar from "./components/UserSideBar.jsx"
 import AdminSideBar from "./components/AdminSideBar.jsx"
-<<<<<<< Updated upstream
-=======
 import ContactUs from "./pages/ContactUs";
 import Gallery from "./pages/GalleryPage.jsx"
->>>>>>> Stashed changes
+
 
 
 function App() {
@@ -23,11 +21,8 @@ function App() {
       <Route path="/register" element={<Register/>} />
       <Route path="/admindashboard" element={<AdminSideBar/>} />
       <Route path="/useraccount" element={<UserSideBar/>} />
-<<<<<<< Updated upstream
-=======
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/gallery" element={<Gallery />} />
->>>>>>> Stashed changes
      </Routes>
     </>
   )
