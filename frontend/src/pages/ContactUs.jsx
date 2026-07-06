@@ -45,9 +45,9 @@ const ContactUs = () => {
             <a href="#" className="hover:text-amber-400 transition">
               About Us
             </a>
-            <a href="#" className="hover:text-amber-400 transition">
+            <Link to="/gallery" className="hover:text-amber-400 transition">
               Gallery
-            </a>
+            </Link>
             <Link to="/contact" className="text-amber-400 transition">
               Contact
             </Link>
