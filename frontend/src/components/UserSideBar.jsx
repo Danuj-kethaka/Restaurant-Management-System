@@ -153,7 +153,7 @@ const UserSideBar = () => {
 
           {/* ORDERS */}
           <Link
-            to=""
+            to="/useraccount"
             className="bg-zinc-900 border-l-4 border-transparent text-gray-300 hover:bg-zinc-800 hover:text-amber-400 group px-3 py-2 flex items-center text-sm font-medium"
           >
             <svg
