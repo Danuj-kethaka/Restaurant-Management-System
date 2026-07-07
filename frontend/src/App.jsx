@@ -9,7 +9,7 @@ import ContactUs from "./pages/ContactUs";
 import Gallery from "./pages/GalleryPage.jsx"
 import Account from "./pages/Auth/UserPage.jsx"
 import { useUserStore } from "./store/Auth/User.js";
-
+import AboutPage from './pages/AboutPage.jsx'
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
       <Route path="/useraccount" element={<UserSideBar/>} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/gallery" element={<Gallery />} />x
-      
+      <Route path="/about" element={<AboutPage />} />
 
       <Route path="/useraccount" element={<UserSideBar />}>
        <Route index element={<Account />} />

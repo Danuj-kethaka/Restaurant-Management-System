@@ -28,7 +28,7 @@ const RestaurantHome = () => {
           <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
             <a href="#menu" className="hover:text-amber-400 transition">Menu</a>
             <a href="#" className="hover:text-amber-400 transition">Reservation</a>
-            <a href="#" className="hover:text-amber-400 transition">About Us</a>
+            <Link to="/about" className="hover:text-amber-400 transition">About Us</Link>
             <Link to="/gallery" className="hover:text-amber-400 transition">Gallery</Link>
             <Link to="/contact" className="hover:text-amber-400 transition">Contact</Link>
           </div>
@@ -97,13 +97,13 @@ const RestaurantHome = () => {
                     Reservation
                 </a>
 
-                <a
-                    href="#about"
+                <Link 
+                    to="/about"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     About Us
-                </a>
+                </Link>
 
                 <Link
                     to="/gallery"
