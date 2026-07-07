@@ -7,11 +7,14 @@ import UserSideBar from "./components/UserSideBar.jsx"
 import AdminSideBar from "./components/AdminSideBar.jsx"
 import ContactUs from "./pages/ContactUs";
 import Gallery from "./pages/GalleryPage.jsx"
+import Account from "./pages/Auth/UserPage.jsx"
+import { useUserStore } from "./store/Auth/User.js";
 
 
 
 function App() {
   const [count, setCount] = useState(0)
+  
 
   return (
     <>
@@ -22,7 +25,13 @@ function App() {
       <Route path="/admindashboard" element={<AdminSideBar/>} />
       <Route path="/useraccount" element={<UserSideBar/>} />
       <Route path="/contact" element={<ContactUs />} />
-      <Route path="/gallery" element={<Gallery />} />
+      <Route path="/gallery" element={<Gallery />} />x
+      
+
+      <Route path="/useraccount" element={<UserSideBar />}>
+       <Route index element={<Account />} />
+      </Route>
+        
      </Routes>
     </>
   )
