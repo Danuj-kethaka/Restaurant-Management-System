@@ -4,10 +4,14 @@ import { connectDB } from "./config/db.js"
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/User.route.js";
 import adminRoutes from "./routes/Admin.route.js";
+import menuRoutes from "./routes/Menu.Route.js";
+import { configureCloudinary } from "./config/cloudinary.js";
 import path from "path";
 import cors from "cors";
 
 dotenv.config();
+
+configureCloudinary();
 
 const app = express();
 const PORT = process.env.PORT;
@@ -34,6 +38,9 @@ app.use("/api/users",userRoutes);
 
 //Admin Routes
 app.use("/api/admin",adminRoutes);
+
+//Menu Routes
+app.use("/api/menu",menuRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "frontend", "dist");

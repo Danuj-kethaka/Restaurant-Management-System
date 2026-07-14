@@ -5,10 +5,18 @@ import Register from "./pages/Auth/RegisterPage.jsx"
 import RestaurantHomepage from "./pages/HomePage.jsx"
 import UserSideBar from "./components/UserSideBar.jsx"
 import AdminSideBar from "./components/AdminSideBar.jsx"
+import ContactUs from "./pages/ContactUs";
+import Gallery from "./pages/GalleryPage.jsx"
+import Account from "./pages/Auth/UserPage.jsx"
+import AddMenu from "./pages/Admin/AddMenu.jsx"
+import AdminDashboard from "./pages/Admin/Dashboard.jsx"
+import { useUserStore } from "./store/Auth/User.js";
+
 
 
 function App() {
   const [count, setCount] = useState(0)
+  
 
   return (
     <>
@@ -18,6 +26,19 @@ function App() {
       <Route path="/register" element={<Register/>} />
       <Route path="/admindashboard" element={<AdminSideBar/>} />
       <Route path="/useraccount" element={<UserSideBar/>} />
+      <Route path="/contact" element={<ContactUs />} />
+      <Route path="/gallery" element={<Gallery />} />x
+      
+
+      <Route path="/useraccount" element={<UserSideBar />}>
+       <Route index element={<Account />} />
+      </Route>
+
+      <Route path="/admindashboard" element={<AdminSideBar />}>
+         <Route index element={<AdminDashboard />} />
+         <Route path="addmenu" element={<AddMenu />} />
+      </Route>
+  
      </Routes>
     </>
   )

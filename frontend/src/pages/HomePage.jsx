@@ -1,14 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Menu, X, Star } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Star,ShoppingCart} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
+import { useMenuStore } from "../store/Menu/Menu.js";
 import { useUserStore } from "../store/Auth/User.js";
 
 const RestaurantHome = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser } = useUserStore();
+  const { menus, getMenus } = useMenuStore();
+
+  useEffect(() => {
+    getMenus();
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -29,8 +35,8 @@ const RestaurantHome = () => {
             <a href="#menu" className="hover:text-amber-400 transition">Menu</a>
             <a href="#" className="hover:text-amber-400 transition">Reservation</a>
             <a href="#" className="hover:text-amber-400 transition">About Us</a>
-            <a href="#" className="hover:text-amber-400 transition">Gallery</a>
-            <a href="#" className="hover:text-amber-400 transition">Contact</a>
+            <Link to="/gallery" className="hover:text-amber-400 transition">Gallery</Link>
+            <Link to="/contact" className="hover:text-amber-400 transition">Contact</Link>
           </div>
 
           <button 
@@ -43,6 +49,14 @@ const RestaurantHome = () => {
           <div className="hidden md:flex items-center gap-4">
             {currentUser ? (
                 <>
+
+                  <button className="relative">
+                    <ShoppingCart size={24} />
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        0
+                    </span>
+                  </button>
+
                 <span className="text-white text-sm">
                     Welcome,{" "}
                     <span className="text-amber-400 font-semibold">
@@ -105,21 +119,28 @@ const RestaurantHome = () => {
                     About Us
                 </a>
 
-                <a
-                    href="#gallery"
+                <Link
+                    to="/gallery"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     Gallery
-                </a>
+                </Link>
 
-                <a
+                {/* <a
                     href="#contact"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     Contact
-                </a>
+                </a> */}
+                <Link
+                    to="/contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="hover:text-amber-400"
+                >
+                    Contact
+                </Link>
 
                 <div className="border-t border-zinc-700 pt-5">
                     {currentUser ? (
@@ -250,135 +271,60 @@ const RestaurantHome = () => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {/* Card 1 */}
-            <div className="bg-zinc-900 rounded-3xl overflow-hidden hover:-translate-y-2 transition duration-300 shadow-xl">
+                {menus.map((menu) => (
 
-                <img
-                src="/images/b2.webp"
-                alt="Chicken Biryani"
-                className="h-60 w-full object-cover"
-                />
+                    <div
+                        key={menu._id}
+                        className="bg-zinc-900 rounded-3xl overflow-hidden hover:-translate-y-2 transition duration-300 shadow-xl"
+                    >
 
-                <div className="p-6">
+                        <img
+                            src={menu.image}
+                            alt={menu.name}
+                            className="h-60 w-full object-cover"
+                        />
 
-                <div className="flex justify-between items-center">
+                        <div className="p-6">
 
-                    <h3 className="text-2xl font-bold">
-                    Chicken Nasigurani
-                    </h3>
+                            <div className="flex justify-between items-center">
 
-                    <span className="text-amber-400 text-xl font-bold">
-                    Rs.1200
-                    </span>
+                                <h3 className="text-2xl font-bold">
+                                    {menu.name}
+                                </h3>
 
-                </div>
+                                <span className="text-amber-400 text-xl font-bold">
+                                    Rs. {menu.price}
+                                </span>
 
-                <p className="text-zinc-400 mt-3">
-                    Aromatic basmati rice with spicy chicken and traditional spices.
-                </p>
+                            </div>
 
-                <div className="flex justify-between items-center mt-6">
+                            <p className="text-zinc-400 mt-3">
+                                {menu.description}
+                            </p>
 
-                    <div className="flex text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={18} fill="currentColor" />
-                    ))}
+                            <div className="flex justify-between items-center mt-6">
+
+                                <div className="flex text-amber-400">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star
+                                            key={i}
+                                            size={18}
+                                            fill="currentColor"
+                                        />
+                                    ))}
+                                </div>
+
+                                <button className="bg-amber-500 hover:bg-amber-400 text-black px-5 py-2 rounded-xl font-semibold">
+                                    Order
+                                </button>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <button className="bg-amber-500 hover:bg-amber-400 text-black px-5 py-2 rounded-xl font-semibold">
-                    Order
-                    </button>
-
-                </div>
-                </div>
-
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-zinc-900 rounded-3xl overflow-hidden hover:-translate-y-2 transition duration-300 shadow-xl">
-
-                <img
-                src="/images/ch.avif"
-                alt="Butter Chicken"
-                className="h-60 w-full object-cover"
-                />
-
-                <div className="p-6">
-
-                <div className="flex justify-between">
-                    <h3 className="text-2xl font-bold">
-                    Chicken Kottu
-                    </h3>
-
-                    <span className="text-amber-400 text-xl font-bold">
-                    Rs.1450
-                    </span>
-                </div>
-
-                <p className="text-zinc-400 mt-3">
-                    Creamy tomato curry served with fresh naan bread.
-                </p>
-
-                <div className="flex justify-between items-center mt-6">
-
-                    <div className="flex text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={18} fill="currentColor" />
-                    ))}
-                    </div>
-
-                    <button className="bg-amber-500 hover:bg-amber-400 text-black px-5 py-2 rounded-xl font-semibold">
-                    Order
-                    </button>
-
-                </div>
-
-                </div>
-
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-zinc-900 rounded-3xl overflow-hidden hover:-translate-y-2 transition duration-300 shadow-xl">
-
-                <img
-                src="/images/noo3.jpg"
-                alt="Grilled Steak"
-                className="h-60 w-full object-cover"
-                />
-
-                <div className="p-6">
-
-                <div className="flex justify-between">
-                    <h3 className="text-2xl font-bold">
-                    Noodles
-                    </h3>
-
-                    <span className="text-amber-400 text-xl font-bold">
-                    Rs.2800
-                    </span>
-                </div>
-
-                <p className="text-zinc-400 mt-3">
-                    Premium grilled beef steak with vegetables and sauce.
-                </p>
-
-                <div className="flex justify-between items-center mt-6">
-
-                    <div className="flex text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={18} fill="currentColor" />
-                    ))}
-                    </div>
-
-                    <button className="bg-amber-500 hover:bg-amber-400 text-black px-5 py-2 rounded-xl font-semibold">
-                    Order
-                    </button>
-
-                </div>
-
-                </div>
-
-            </div>
+                ))}
 
             </div>
 
