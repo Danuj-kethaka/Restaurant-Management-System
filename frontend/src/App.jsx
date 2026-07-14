@@ -8,6 +8,8 @@ import AdminSideBar from "./components/AdminSideBar.jsx"
 import ContactUs from "./pages/ContactUs";
 import Gallery from "./pages/GalleryPage.jsx"
 import Account from "./pages/Auth/UserPage.jsx"
+import AddMenu from "./pages/Admin/AddMenu.jsx"
+import AdminDashboard from "./pages/Admin/Dashboard.jsx"
 import { useUserStore } from "./store/Auth/User.js";
 
 
@@ -31,7 +33,12 @@ function App() {
       <Route path="/useraccount" element={<UserSideBar />}>
        <Route index element={<Account />} />
       </Route>
-        
+
+      <Route path="/admindashboard" element={<AdminSideBar />}>
+         <Route index element={<AdminDashboard />} />
+         <Route path="addmenu" element={<AddMenu />} />
+      </Route>
+  
      </Routes>
     </>
   )

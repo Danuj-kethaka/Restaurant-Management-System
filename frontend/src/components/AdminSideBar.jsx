@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import {ShoppingBag,CalendarDays,MessageSquareMore} from "lucide-react";
+import {ShoppingBag,CalendarDays,MessageSquareMore,BookOpen} from "lucide-react";
 import { useUserStore } from "../store/Auth/User.js";
 
 const AdminSideBar = () => {
@@ -25,7 +25,8 @@ const AdminSideBar = () => {
   };
 
   const menuItems = [
-    { icon: LayoutDashboard, label: "Dashboard",path:"", active: true },
+    { icon: LayoutDashboard, label: "Dashboard",path:"/admindashboard", active: true },
+    { icon: BookOpen, label: "Menu", path: "addmenu" },
     { icon: ShoppingBag, label: "Orders",path:"" },
     { icon: CalendarDays, label: "Reservations",path:"" },
     { icon: Users, label: "Users",path:"" },
