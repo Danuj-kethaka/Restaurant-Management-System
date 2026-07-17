@@ -62,4 +62,22 @@ export const useMenuStore = create((set, get) => ({
     }
 
   },
+
+getProduct: (id) => {
+  const product = get().menus.find((item) => item._id === id); 
+  
+  if (!product) {
+    return {
+      success: false,
+      message: "Product not found",
+    };
+  }
+
+  return {
+    success: true,
+    data: product,
+  };
+},
+
+
 }));

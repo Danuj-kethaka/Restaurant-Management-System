@@ -95,13 +95,13 @@ const RestaurantHome = () => {
             <div className="md:hidden bg-black/95 border-t border-white/10">
                 <div className="flex flex-col px-6 py-6 space-y-5 text-sm uppercase tracking-widest">
 
-                <a
-                    href="#menu"
+                <Link
+                    to="/menu"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     Menu
-                </a>
+                </Link>
 
                 <a
                     href="#"

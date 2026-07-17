@@ -11,7 +11,8 @@ import Account from "./pages/Auth/UserPage.jsx"
 import AddMenu from "./pages/Admin/AddMenu.jsx"
 import AdminDashboard from "./pages/Admin/Dashboard.jsx"
 import { useUserStore } from "./store/Auth/User.js";
-
+import MenuPage from "./pages/MenuPage.jsx"
+import Cart from "./pages/CartPage.jsx"
 
 
 function App() {
@@ -28,8 +29,8 @@ function App() {
       <Route path="/useraccount" element={<UserSideBar/>} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/gallery" element={<Gallery />} />x
-      
-
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/Menu" element={<MenuPage />} />
       <Route path="/useraccount" element={<UserSideBar />}>
        <Route index element={<Account />} />
       </Route>
