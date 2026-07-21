@@ -64,8 +64,9 @@ export const useMenuStore = create((set, get) => ({
   },
 
 getProduct: (id) => {
-  const product = get().menus.find((item) => item._id === id); 
-  
+  const normalizedId = id?.toString();
+  const product = get().menus.find((item) => String(item._id ?? item.id ?? "") === normalizedId);
+
   if (!product) {
     return {
       success: false,
