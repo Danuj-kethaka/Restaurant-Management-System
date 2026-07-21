@@ -62,4 +62,23 @@ export const useMenuStore = create((set, get) => ({
     }
 
   },
+
+getProduct: (id) => {
+  const normalizedId = id?.toString();
+  const product = get().menus.find((item) => String(item._id ?? item.id ?? "") === normalizedId);
+
+  if (!product) {
+    return {
+      success: false,
+      message: "Product not found",
+    };
+  }
+
+  return {
+    success: true,
+    data: product,
+  };
+},
+
+
 }));

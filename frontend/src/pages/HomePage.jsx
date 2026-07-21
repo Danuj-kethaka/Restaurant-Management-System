@@ -32,7 +32,7 @@ const RestaurantHome = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
-            <a href="#menu" className="hover:text-amber-400 transition">Menu</a>
+            <a href="menu" className="hover:text-amber-400 transition">Menu</a>
             <a href="#" className="hover:text-amber-400 transition">Reservation</a>
             <a href="#" className="hover:text-amber-400 transition">About Us</a>
             <Link to="/gallery" className="hover:text-amber-400 transition">Gallery</Link>
@@ -95,13 +95,13 @@ const RestaurantHome = () => {
             <div className="md:hidden bg-black/95 border-t border-white/10">
                 <div className="flex flex-col px-6 py-6 space-y-5 text-sm uppercase tracking-widest">
 
-                <a
-                    href="#menu"
+                <Link
+                    to="/menu"
                     onClick={() => setIsMenuOpen(false)}
                     className="hover:text-amber-400"
                 >
                     Menu
-                </a>
+                </Link>
 
                 <a
                     href="#"
