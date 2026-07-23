@@ -20,15 +20,17 @@ export default function Login() {
   const result = await signInUser(loginData);
 
   if (result.success) {
-    toast.success("Login Successful");
+  toast.success("Login Successful");
+  useUserStore.getState().setAuth(result.user, result.accessToken);
 
-    useUserStore.getState().setAuth(result.user, result.accessToken);
+  const role = result.user.role;
 
-    if (result.user.role === "admin") {
-      navigate("/admindashboard");
-    } else {
-      navigate("/");
-    }
+  if (role === "admin" || role === "manager" || role === "staff") {
+    navigate("/admindashboard");
+  } else {
+    navigate("/");
+  }
+
     } else {
       toast.error(result.message || "Login failed");
     }

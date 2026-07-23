@@ -23,6 +23,7 @@ import AdminReservations from "./pages/Admin/AdminReservation.jsx"
 import AdminFeedback from "./pages/Admin/AdminFeedback.jsx"
 import Feedback from "./pages/Feedback.jsx"
 import AdminUsers from "./pages/Admin/AdminUsers.jsx"
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0)

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useUserStore } from "../../store/Auth/User.js";
 import toast from "react-hot-toast";
 import { 
-  Eye, Trash2, RefreshCw, ChevronLeft, ChevronRight, Edit2 
+  Eye, Trash2, RefreshCw, ChevronLeft, ChevronRight 
 } from "lucide-react";
 
 const AdminUsers = () => {
-  const { accessToken } = useUserStore();
+  const { accessToken, currentUser } = useUserStore(); // ← Added currentUser
   
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,6 +17,15 @@ const AdminUsers = () => {
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  // Optional: Protect this page (only admin can access)
+  useEffect(() => {
+    if (currentUser && currentUser.role !== "admin") {
+      toast.error("Access denied. Admin only area.");
+      // You can redirect here if you have useNavigate
+      // navigate("/");
+    }
+  }, [currentUser]);
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -41,8 +50,10 @@ const AdminUsers = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    if (accessToken) {
+      fetchUsers();
+    }
+  }, [accessToken]);
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
@@ -67,6 +78,7 @@ const AdminUsers = () => {
     }
   };
 
+  // Role filtering
   const filteredUsers = users.filter(user => {
     const matchesSearch = 
       user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -87,6 +99,18 @@ const AdminUsers = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, filterRole]);
+
+  // Role badge styling
+  const getRoleBadge = (role) => {
+    const styles = {
+      admin: "bg-purple-100 text-purple-700",
+      manager: "bg-orange-100 text-orange-700",
+      staff: "bg-emerald-100 text-emerald-700",
+      user: "bg-blue-100 text-blue-700"
+    };
+    
+    return styles[role] || "bg-gray-100 text-gray-700";
+  };
 
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4 pb-12">
@@ -113,6 +137,7 @@ const AdminUsers = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="flex-1 rounded-xl border border-gray-300 px-5 py-4 focus:border-amber-500 outline-none"
         />
+        
         <select
           value={filterRole}
           onChange={(e) => setFilterRole(e.target.value)}
@@ -120,6 +145,8 @@ const AdminUsers = () => {
         >
           <option value="all">All Roles</option>
           <option value="user">User</option>
+          <option value="staff">Staff</option>
+          <option value="manager">Manager</option>
           <option value="admin">Admin</option>
         </select>
       </div>
@@ -128,7 +155,6 @@ const AdminUsers = () => {
         <div className="text-center py-20 text-gray-500">Loading users...</div>
       ) : filteredUsers.length === 0 ? (
         <div className="bg-white rounded-2xl shadow p-20 text-center">
-          <User size={80} className="mx-auto text-gray-300 mb-6" />
           <h3 className="text-2xl font-semibold text-gray-700">No Users Found</h3>
         </div>
       ) : (
@@ -151,11 +177,8 @@ const AdminUsers = () => {
                   </td>
                   <td className="py-5 px-6 text-gray-600">{user.email}</td>
                   <td className="py-5 px-6">
-                    <span className={`inline-block px-4 py-1.5 text-sm font-medium rounded-full capitalize
-                      ${user.role === "admin" 
-                        ? "bg-purple-100 text-purple-700" 
-                        : "bg-blue-100 text-blue-700"}`}>
-                      {user.role || "user"}
+                    <span className={`inline-block px-4 py-1.5 text-sm font-medium rounded-full capitalize ${getRoleBadge(user.role)}`}>
+                      {user.role}
                     </span>
                   </td>
                   <td className="py-5 px-6 text-sm text-gray-500">
@@ -211,7 +234,7 @@ const AdminUsers = () => {
         </div>
       )}
 
-      {/* User Detail Modal */}
+      {/* User Detail Modal - Updated role badge */}
       {selectedUser && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl w-full max-w-md max-h-[90vh] overflow-auto shadow-2xl">
@@ -237,9 +260,8 @@ const AdminUsers = () => {
                 </div>
                 <div>
                   <p className="text-gray-500 text-sm">Role</p>
-                  <span className={`inline-block px-5 py-2 rounded-full text-lg capitalize
-                    ${selectedUser.role === "admin" ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700"}`}>
-                    {selectedUser.role || "user"}
+                  <span className={`inline-block px-5 py-2 rounded-full text-lg capitalize ${getRoleBadge(selectedUser.role)}`}>
+                    {selectedUser.role}
                   </span>
                 </div>
                 <div>

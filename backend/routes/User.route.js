@@ -10,12 +10,17 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { generateAccessToken } from "../utils/token.js";
 import { protect } from "../middleware/auth.middleware.js";
+import {authorize, isManagerOrAbove,isStaffOrAbove,  isAdmin} from "../middleware/rbac.middleware.js"
 
 //user routes
 router.post("/register",createUser);
 router.get("/", protect, getUsers);
 router.put("/:id",protect, updateUser);
 router.delete("/:id",protect, deleteUser);
+
+router.get("/", protect, isAdmin, getUsers);               // only admin
+router.put("/:id", protect, isAdmin, updateUser);
+router.delete("/:id", protect, isAdmin, deleteUser);
 
 //login routes
 router.post("/login", loginUser);
