@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("CAAIGRegistrationHomepageRoot.entrypoint",["CAARegistrationFormDesktopQuery$Parameters","JSResourceForInteraction","WebPixelRatio","WebStorage"],(function(t,n,r,o,a,i,l){"use strict";var e,s=(e||(e=r("WebStorage"))).getLocalStorageForRead(),u=s?s.getItem("ig_gdpr_signup"):null,c={getPreloadProps:function(t){return{queries:{CAARegistrationHomePageQuery:{parameters:r("CAARegistrationFormDesktopQuery$Parameters"),variables:{args:{},ig_age_data:u,scale:o("WebPixelRatio").get()}}}}},root:r("JSResourceForInteraction")("CAAIGRegistrationHomepageRoot.react").__setRef("CAAIGRegistrationHomepageRoot.entrypoint")};l.default=c}),98);

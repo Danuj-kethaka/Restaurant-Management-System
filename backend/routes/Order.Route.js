@@ -9,7 +9,7 @@ router.post("/", protect, createOrder);
 router.get("/myorders", protect, getUserOrders);
 router.get("/:id", protect, getOrderById);
 
-router.get("/", protect, getAllOrders);                    // ← Add this
+router.get("/", protect, getAllOrders);                   
 router.patch("/:id/status", protect, updateOrderStatus);
 
 export default router;

@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("CAAIGLoginHomepageRoot.entrypoint",["CAAFetaIGLoginHomepageQuery$Parameters","JSResourceForInteraction","WebPixelRatio","qex"],(function(t,n,r,o,a,i,l){"use strict";var e={getPreloadProps:function(t){var e;return{queries:{query:{parameters:r("CAAFetaIGLoginHomepageQuery$Parameters"),variables:{cryptedString:t.routeProps.cryptedString,enableRelayFetchAssets:(e=r("qex")._("1704"))!=null?e:!1,forceManualLogin:t.routeProps.forceAuthentication,nextCuid:t.routeProps.nextCuid,otps:t.routeProps.otps,scale:o("WebPixelRatio").get()}}}}},root:r("JSResourceForInteraction")("CAAIGLoginHomepageRoot.react").__setRef("CAAIGLoginHomepageRoot.entrypoint")};l.default=e}),98);

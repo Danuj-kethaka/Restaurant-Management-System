@@ -26,9 +26,9 @@ const AdminSideBar = () => {
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard",path:"/admindashboard", active: true },
-    { icon: BookOpen, label: "Menu", path: "addmenu" },
     { icon: ShoppingBag, label: "Orders",path:"adminorders" },
-    { icon: CalendarDays, label: "Reservations",path:"" },
+    { icon: CalendarDays, label: "Reservations",path:"adminReservation" },
+    { icon: BookOpen, label: "Menu", path: "addmenu" },
     { icon: Users, label: "Users",path:"" },
     { icon: MessageSquareMore, label: "Feedback",path:"" },
     { icon: Settings, label: "Settings" },

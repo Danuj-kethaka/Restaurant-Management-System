@@ -39,7 +39,7 @@ const ContactUs = () => {
             <Link to="/" className="hover:text-amber-400 transition">
               Menu
             </Link>
-            <a href="#" className="hover:text-amber-400 transition">
+            <a href="/reservation" className="hover:text-amber-400 transition">
               Reservation
             </a>
             <a href="/aboutus" className="hover:text-amber-400 transition">

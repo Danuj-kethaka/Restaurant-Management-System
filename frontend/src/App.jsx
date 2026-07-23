@@ -17,6 +17,9 @@ import Checkout from "./pages/Order/Checkout.jsx"
 import OrderSuccess from "./pages/Order/OrderSuccess.jsx"
 import MyOrders from "./pages/Auth/MyOrders.jsx"
 import AdminOrders from "./pages/Admin/AdminOrders.jsx"
+import Reservation from "./pages/Reservation.jsx"
+import MyReservations from "./pages/Auth/MyReservations.jsx"
+import AdminReservations from "./pages/Admin/AdminReservation.jsx"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,20 +38,23 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/checkout" element={< Checkout/>} />
+      <Route path="/reservation" element={< Reservation/>} />
       <Route path="/order-success" element={< OrderSuccess/>} />
-      <Route path="/useraccount" element={<UserSideBar />}>     
+      <Route path="/useraccount" element={<UserSideBar />}>      
       <Route index element={<Account />} />
       </Route>
 
       <Route path="/useraccount" element={<UserSideBar />}>
         <Route index element={<Account />} />          
         <Route path="myorders" element={<MyOrders />} />  
+        <Route path="myreservation" element={<MyReservations />} />  
       </Route>
 
       <Route path="/admindashboard" element={<AdminSideBar />}>
          <Route index element={<AdminDashboard />} />
          <Route path="addmenu" element={<AddMenu />} />
          <Route path="adminorders" element={<AdminOrders />} />  
+         <Route path="adminReservation" element={<AdminReservations />} />  
       </Route>
   
      </Routes>
