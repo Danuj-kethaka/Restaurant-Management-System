@@ -12,7 +12,6 @@ import AddMenu from "./pages/Admin/AddMenu.jsx"
 import AdminDashboard from "./pages/Admin/Dashboard.jsx"
 import { useUserStore } from "./store/Auth/User.js";
 import Cart from "./pages/Order/CartPage.jsx"
-import Product from "./pages/ProductPage.jsx"
 import  AboutUs from "./pages/AboutPage.jsx"
 import Checkout from "./pages/Order/Checkout.jsx"
 import OrderSuccess from "./pages/Order/OrderSuccess.jsx"

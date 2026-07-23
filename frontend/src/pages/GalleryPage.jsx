@@ -84,7 +84,7 @@ const GalleryPage = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
-            <Link to="/#menu" className="hover:text-amber-400 transition">Menu</Link>
+            <Link to="/" className="hover:text-amber-400 transition">Menu</Link>
             <a href="#" className="hover:text-amber-400 transition">Reservation</a>
             <Link to="/aboutus" className="hover:text-amber-400 transition">About Us</Link>
             <Link to="/gallery" className="text-amber-400 transition">Gallery</Link>
@@ -125,7 +125,7 @@ const GalleryPage = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-black/95 border-t border-white/10">
             <div className="flex flex-col px-6 py-6 space-y-5 text-sm uppercase tracking-widest">
-              <Link to="/#menu" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Menu</Link>
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Menu</Link>
               <a href="#" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Reservation</a>
               <Link to="/aboutus" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">About Us</Link>
               <Link to="/gallery" onClick={() => setIsMenuOpen(false)} className="text-amber-400">Gallery</Link>
