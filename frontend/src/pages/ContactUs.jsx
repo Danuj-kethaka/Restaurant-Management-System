@@ -36,13 +36,13 @@ const ContactUs = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
-            <Link to="/#menu" className="hover:text-amber-400 transition">
+            <Link to="/" className="hover:text-amber-400 transition">
               Menu
             </Link>
             <a href="#" className="hover:text-amber-400 transition">
               Reservation
             </a>
-            <a href="#" className="hover:text-amber-400 transition">
+            <a href="/aboutus" className="hover:text-amber-400 transition">
               About Us
             </a>
             <Link to="/gallery" className="hover:text-amber-400 transition">

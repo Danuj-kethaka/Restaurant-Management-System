@@ -21,7 +21,7 @@ export default function Cart() {
         </div>
 
         <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
-          <Link to="/menu" className="hover:text-amber-400 transition">
+          <Link to="/" className="hover:text-amber-400 transition">
             Menu
           </Link>
           <a href="#" className="hover:text-amber-400 transition">
@@ -95,7 +95,7 @@ export default function Cart() {
       {isMenuOpen && (
         <div className="md:hidden bg-black/95 border-t border-white/10">
           <div className="flex flex-col px-6 py-6 space-y-5 text-sm uppercase tracking-widest">
-            <Link to="/#menu" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">
+            <Link to="#menu" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">
               Menu
             </Link>
             <a href="#" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">
@@ -179,7 +179,7 @@ export default function Cart() {
           <h2 className="font-serif text-4xl font-bold mb-3">Your cart is empty</h2>
           <p className="text-zinc-400 mb-8">Browse our menu to add items.</p>
           <Link
-            to="/menu"
+            to="/"
             className="inline-block bg-amber-500 hover:bg-amber-400 transition text-black px-8 py-3 rounded-lg font-semibold text-sm tracking-wider shadow-lg shadow-amber-500/30"
           >
             BROWSE MENU

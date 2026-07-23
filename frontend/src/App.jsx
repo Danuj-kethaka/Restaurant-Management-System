@@ -11,9 +11,9 @@ import Account from "./pages/Auth/UserPage.jsx"
 import AddMenu from "./pages/Admin/AddMenu.jsx"
 import AdminDashboard from "./pages/Admin/Dashboard.jsx"
 import { useUserStore } from "./store/Auth/User.js";
-import MenuPage from "./pages/MenuPage.jsx"
 import Cart from "./pages/CartPage.jsx"
 import Product from "./pages/ProductPage.jsx"
+import  AboutUs from "./pages/AboutPage.jsx"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,8 +30,7 @@ function App() {
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/Menu" element={<MenuPage />} />
-      <Route path="/product/:id" element={<Product />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/useraccount" element={<UserSideBar />}>
        <Route index element={<Account />} />
       </Route>
