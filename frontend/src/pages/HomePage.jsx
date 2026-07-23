@@ -51,8 +51,8 @@ const RestaurantHome = () => {
 
           <div className="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest">
             <a href="/" className="hover:text-amber-400 transition">Menu</a>
-            <a href="/reservation" className="hover:text-amber-400 transition">Reservation</a>
-            <a href="/aboutus" className="hover:text-amber-400 transition">About Us</a>
+            <Link to="/reservation" className="hover:text-amber-400 transition">Reservation</Link>
+            <Link to="/aboutus" className="hover:text-amber-400 transition">About Us</Link>
             <Link to="/gallery" className="hover:text-amber-400 transition">Gallery</Link>
             <Link to="/contact" className="hover:text-amber-400 transition">Contact</Link>
           </div>
@@ -111,8 +111,8 @@ const RestaurantHome = () => {
           <div className="md:hidden bg-black/95 border-t border-white/10">
             <div className="flex flex-col px-6 py-6 space-y-5 text-sm uppercase tracking-widest">
               <a href="/" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Menu</a>
-              <a href="/reservation" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Reservation</a>
-              <a href="/aboutus" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">About Us</a>
+              <Link to="/reservation" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Reservation</Link>
+              <Link to="/aboutus" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">About Us</Link>
               <Link to="/gallery" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Gallery</Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="hover:text-amber-400">Contact</Link>
 

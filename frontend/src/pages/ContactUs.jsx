@@ -39,12 +39,12 @@ const ContactUs = () => {
             <Link to="/" className="hover:text-amber-400 transition">
               Menu
             </Link>
-            <a href="/reservation" className="hover:text-amber-400 transition">
+            <Link to="/reservation" className="hover:text-amber-400 transition">
               Reservation
-            </a>
-            <a href="/aboutus" className="hover:text-amber-400 transition">
+            </Link>
+            <Link to="/aboutus" className="hover:text-amber-400 transition">
               About Us
-            </a>
+            </Link>
             <Link to="/gallery" className="hover:text-amber-400 transition">
               Gallery
             </Link>
