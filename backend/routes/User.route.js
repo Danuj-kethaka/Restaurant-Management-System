@@ -12,7 +12,7 @@ import { generateAccessToken } from "../utils/token.js";
 import { protect } from "../middleware/auth.middleware.js";
 
 //user routes
-router.post("/",createUser);
+router.post("/register",createUser);
 router.get("/", protect, getUsers);
 router.put("/:id",protect, updateUser);
 router.delete("/:id",protect, deleteUser);

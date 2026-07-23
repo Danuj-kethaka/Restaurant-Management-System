@@ -6,22 +6,44 @@ import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
-  if (!name || !email || !password)
-    return res
-      .status(400)
-      .json({ success: false, message: "please provide all required fields" });
+
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide all required fields"
+    });
+  }
 
   try {
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: "User with this email already exists"
+      });
+    }
+
     const newUser = new User({
       name,
       email,
       password: await bcrypt.hash(password, 10),
     });
+
     await newUser.save();
-    res.status(201).json({ success: true, data: newUser });
+
+    res.status(201).json({
+      success: true,
+      message: "Account created successfully",
+      // You can send user data if you want auto-login later
+      // user: { _id: newUser._id, name: newUser.name, email: newUser.email }
+    });
   } catch (error) {
     console.error("Error in Create User:", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
+    res.status(500).json({
+      success: false,
+      message: "Server Error"
+    });
   }
 };
 

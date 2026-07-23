@@ -11,9 +11,13 @@ import Account from "./pages/Auth/UserPage.jsx"
 import AddMenu from "./pages/Admin/AddMenu.jsx"
 import AdminDashboard from "./pages/Admin/Dashboard.jsx"
 import { useUserStore } from "./store/Auth/User.js";
-import Cart from "./pages/CartPage.jsx"
+import Cart from "./pages/Order/CartPage.jsx"
 import Product from "./pages/ProductPage.jsx"
 import  AboutUs from "./pages/AboutPage.jsx"
+import Checkout from "./pages/Order/Checkout.jsx"
+import OrderSuccess from "./pages/Order/OrderSuccess.jsx"
+import MyOrders from "./pages/Auth/MyOrders.jsx"
+import AdminOrders from "./pages/Admin/AdminOrders.jsx"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,14 +34,22 @@ function App() {
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/cart" element={<Cart />} />
-        <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/checkout" element={< Checkout/>} />
+      <Route path="/order-success" element={< OrderSuccess/>} />
+      <Route path="/useraccount" element={<UserSideBar />}>     
+      <Route index element={<Account />} />
+      </Route>
+
       <Route path="/useraccount" element={<UserSideBar />}>
-       <Route index element={<Account />} />
+        <Route index element={<Account />} />          
+        <Route path="myorders" element={<MyOrders />} />  
       </Route>
 
       <Route path="/admindashboard" element={<AdminSideBar />}>
          <Route index element={<AdminDashboard />} />
          <Route path="addmenu" element={<AddMenu />} />
+         <Route path="adminorders" element={<AdminOrders />} />  
       </Route>
   
      </Routes>

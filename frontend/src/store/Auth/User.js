@@ -1,119 +1,119 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-export const useUserStore = create((set, get) => ({
-  user: [],
-  currentUser: null,
-  accessToken: null,
-
-  setUser: (user) => set({ user }),
-
-  setAuth: (user, token) =>
-    set({
-      currentUser: user,
-      accessToken: token,
-    }),
-
-  logout: () =>
-    set({
+export const useUserStore = create(
+  persist(
+    (set, get) => ({
       currentUser: null,
       accessToken: null,
-    }),
 
-  // CREATE USER
-  createUser: async (newUser) => {
-    const API_URL = import.meta.env.DEV
-      ? ""
-      : import.meta.env.VITE_API_URL;
+      setAuth: (user, token) => {
+        set({
+          currentUser: user,
+          accessToken: token,
+        });
+      },
 
-    const res = await fetch(`${API_URL}/api/users`, {
+      createUser: async ({ name, email, password }) => {
+  const API_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_URL;
+
+  try {
+    const res = await fetch(`${API_URL}/api/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
-    });
-
-    const data = await res.json();
-
-    if (!data.success) {
-      return { success: false, message: data.message };
-    }
-
-    set((state) => ({
-      user: [...state.user, data.data],
-    }));
-
-    return {
-      success: true,
-      message: "Account created successfully",
-    };
-  },
-
-  // LOGIN 
-  signInUser: async ({ email, password }) => {
-    const API_URL = import.meta.env.DEV
-      ? ""
-      : import.meta.env.VITE_API_URL;
-
-    const res = await fetch(`${API_URL}/api/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       credentials: "include",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     });
 
     const data = await res.json();
 
-    if (data.success) {
-      set({
-        currentUser: data.user,
-        accessToken: data.accessToken,
-      });
-
-      return {
-        success: true,
-        user: data.user,
+    if (res.ok && data.success) {
+      return { 
+        success: true, 
+        message: data.message || "Account created successfully" 
+      };
+    } else {
+      return { 
+        success: false, 
+        message: data.message || "Registration failed" 
       };
     }
-
-    return {
-      success: false,
-      message: data.message,
+  } catch (error) {
+    console.error("Register error:", error);
+    return { 
+      success: false, 
+      message: "Network error. Please check your connection." 
     };
-  },
+  }
+},
 
-  // AUTO REFRESH TOKEN 
-  refreshToken: async () => {
-    const API_URL = import.meta.env.DEV
-      ? ""
-      : import.meta.env.VITE_API_URL;
+      signInUser: async ({ email, password }) => {
+      const API_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_URL;
 
-    const res = await fetch(`${API_URL}/api/users/refesh`, {
-      method: "POST",
-      credentials: "include",
-    });
+      try {
+        const res = await fetch(`${API_URL}/api/users/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ email, password }),
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (data.success) {
-      set({ accessToken: data.accessToken });
-      return data.accessToken;
+        if (data.success) {
+          // Save to store
+          set({
+            currentUser: data.user,
+            accessToken: data.accessToken,
+          });
+
+          return { success: true, user: data.user, accessToken: data.accessToken };
+        }
+
+        return { success: false, message: data.message };
+      } catch (error) {
+        return { success: false, message: "Login failed" };
+      }
+    },
+
+      logout: () => {
+        set({ currentUser: null, accessToken: null });
+        // Clear localStorage manually
+        localStorage.removeItem("user-storage");
+      },
+
+      // Optional: Refresh Token
+      refreshToken: async () => {
+        const API_URL = import.meta.env.DEV
+          ? ""
+          : import.meta.env.VITE_API_URL;
+
+        try {
+          const res = await fetch(`${API_URL}/api/users/refesh`, {
+            method: "POST",
+            credentials: "include",
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            set({ accessToken: data.accessToken });
+            return data.accessToken;
+          }
+        } catch (error) {}
+
+        get().logout();
+        return null;
+      },
+    }),
+
+    {
+      name: "user-storage",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        currentUser: state.currentUser,
+        accessToken: state.accessToken,
+      }),
     }
-
-    set({ currentUser: null, accessToken: null });
-    return null;
-  },
-
-  // LOGOUT (UPDATED)
-  signOutUser: () => {
-    set({
-      currentUser: null,
-      accessToken: null,
-    });
-
-    return {
-      success: true,
-      message: "Logout successfully",
-    };
-  },
-}));
+  )
+);

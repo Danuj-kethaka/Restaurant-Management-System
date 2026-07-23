@@ -16,18 +16,18 @@ const AdminSideBar = () => {
   const [desktopExpanded, setDesktopExpanded] = useState(false);
   const { currentUser, signOutUser } = useUserStore();
   const navigate = useNavigate();
-  const handleSignOut = () => {
-    const { success, message } = signOutUser();
-    if (success) {
-      toast.success(message);
-    }
-    navigate("/login");
-  };
+ const handleSignOut = () => {
+  const { logout } = useUserStore.getState(); // Get the latest logout
+
+  logout();                    // Clear store + localStorage
+  toast.success("Logged out successfully");
+  navigate("/login");
+};
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard",path:"/admindashboard", active: true },
     { icon: BookOpen, label: "Menu", path: "addmenu" },
-    { icon: ShoppingBag, label: "Orders",path:"" },
+    { icon: ShoppingBag, label: "Orders",path:"adminorders" },
     { icon: CalendarDays, label: "Reservations",path:"" },
     { icon: Users, label: "Users",path:"" },
     { icon: MessageSquareMore, label: "Feedback",path:"" },

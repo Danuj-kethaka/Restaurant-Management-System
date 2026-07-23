@@ -10,13 +10,13 @@ const UserSideBar = () => {
   const { currentUser, signOutUser } = useUserStore();
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    const { success, message } = signOutUser();
-    if (success) {
-      toast.success(message);
-    }
-    navigate("/login");
-  };
+ const handleSignOut = () => {
+  const { logout } = useUserStore.getState(); // Get the latest logout
+
+  logout();                    // Clear store + localStorage
+  toast.success("Logged out successfully");
+  navigate("/login");
+};
 
   return (
     <div className="flex flex-row min-h-screen">
@@ -153,7 +153,7 @@ const UserSideBar = () => {
 
           {/* ORDERS */}
           <Link
-            to=""
+            to="myorders"
             className="bg-zinc-900 border-l-4 border-transparent text-gray-300 hover:bg-zinc-800 hover:text-amber-400 group px-3 py-2 flex items-center text-sm font-medium"
           >
             <svg

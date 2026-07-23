@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/User.route.js";
 import adminRoutes from "./routes/Admin.route.js";
 import menuRoutes from "./routes/Menu.Route.js";
+import orderRoutes from "./routes/Order.Route.js";
 import { configureCloudinary } from "./config/cloudinary.js";
 import path from "path";
 import cors from "cors";
@@ -41,6 +42,9 @@ app.use("/api/admin",adminRoutes);
 
 //Menu Routes
 app.use("/api/menu",menuRoutes);
+
+//Order Routes
+app.use("/api/orders", orderRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "frontend", "dist");
