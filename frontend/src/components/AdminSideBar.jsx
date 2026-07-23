@@ -29,8 +29,8 @@ const AdminSideBar = () => {
     { icon: ShoppingBag, label: "Orders",path:"adminorders" },
     { icon: CalendarDays, label: "Reservations",path:"adminReservation" },
     { icon: BookOpen, label: "Menu", path: "addmenu" },
-    { icon: Users, label: "Users",path:"" },
-    { icon: MessageSquareMore, label: "Feedback",path:"" },
+    { icon: Users, label: "Users",path:"adminUsers" },
+    { icon: MessageSquareMore, label: "Feedback",path:"adminFeedback" },
     { icon: Settings, label: "Settings" },
     { icon: LogOut, label: "Logout", danger: true },
   ];

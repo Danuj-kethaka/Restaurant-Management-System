@@ -8,6 +8,7 @@ import menuRoutes from "./routes/Menu.Route.js";
 import orderRoutes from "./routes/Order.Route.js";
 import reservationRoutes from "./routes/Reservation.Route.js";
 import { configureCloudinary } from "./config/cloudinary.js";
+import feedbackRoutes from "./routes/feedback.routes.js";
 import path from "path";
 import cors from "cors";
 
@@ -49,6 +50,9 @@ app.use("/api/orders", orderRoutes);
 
 //Reservation Routes
 app.use("/api/reservations", reservationRoutes);
+
+//Feedback Routes
+app.use("/api/feedback", feedbackRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "frontend", "dist");

@@ -15,37 +15,37 @@ export const useUserStore = create(
       },
 
       createUser: async ({ name, email, password }) => {
-  const API_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_URL;
+        const API_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_URL;
 
-  try {
-    const res = await fetch(`${API_URL}/api/users/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ name, email, password }),
-    });
+        try {
+          const res = await fetch(`${API_URL}/api/users/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ name, email, password }),
+          });
 
-    const data = await res.json();
+          const data = await res.json();
 
-    if (res.ok && data.success) {
-      return { 
-        success: true, 
-        message: data.message || "Account created successfully" 
-      };
-    } else {
-      return { 
-        success: false, 
-        message: data.message || "Registration failed" 
-      };
-    }
-  } catch (error) {
-    console.error("Register error:", error);
-    return { 
-      success: false, 
-      message: "Network error. Please check your connection." 
-    };
-  }
-},
+          if (res.ok && data.success) {
+            return { 
+              success: true, 
+              message: data.message || "Account created successfully" 
+            };
+          } else {
+            return { 
+              success: false, 
+              message: data.message || "Registration failed" 
+            };
+          }
+        } catch (error) {
+          console.error("Register error:", error);
+          return { 
+            success: false, 
+            message: "Network error. Please check your connection." 
+          };
+        }
+      },
 
       signInUser: async ({ email, password }) => {
       const API_URL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_URL;

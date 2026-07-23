@@ -20,6 +20,9 @@ import AdminOrders from "./pages/Admin/AdminOrders.jsx"
 import Reservation from "./pages/Reservation.jsx"
 import MyReservations from "./pages/Auth/MyReservations.jsx"
 import AdminReservations from "./pages/Admin/AdminReservation.jsx"
+import AdminFeedback from "./pages/Admin/AdminFeedback.jsx"
+import Feedback from "./pages/Feedback.jsx"
+import AdminUsers from "./pages/Admin/AdminUsers.jsx"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -40,6 +43,7 @@ function App() {
       <Route path="/checkout" element={< Checkout/>} />
       <Route path="/reservation" element={< Reservation/>} />
       <Route path="/order-success" element={< OrderSuccess/>} />
+      <Route path="/feedback" element={< Feedback/>} />
       <Route path="/useraccount" element={<UserSideBar />}>      
       <Route index element={<Account />} />
       </Route>
@@ -54,7 +58,9 @@ function App() {
          <Route index element={<AdminDashboard />} />
          <Route path="addmenu" element={<AddMenu />} />
          <Route path="adminorders" element={<AdminOrders />} />  
-         <Route path="adminReservation" element={<AdminReservations />} />  
+         <Route path="adminFeedback" element={<AdminFeedback />} /> 
+         <Route path="adminUsers" element={<AdminUsers />} /> 
+         <Route path="adminReservation" element={<AdminReservations />} />     
       </Route>
   
      </Routes>
